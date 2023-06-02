@@ -59,29 +59,29 @@ namespace SweetTreat.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel model)
+    public async Task<ActionResult> Login(LoginViewModel model)
     {
-      if(ModelState.IsValid)
+      if (!ModelState.IsValid)
       {
         return View(model);
       }
       else
       {
         Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
-        if(result.Succeeded)
+        if (result.Succeeded)
         {
           return RedirectToAction("Index");
         }
         else
         {
-          ModelState.AddModelError("", "Invalid login attempt.");
+          ModelState.AddModelError(string.Empty, "Invalid login attempt.");
           return View(model);
         }
       }
     }
 
     [HttpPost]
-    public async Task<IActionResult> LogOff()
+    public async Task<ActionResult> LogOff()
     {
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");

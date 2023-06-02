@@ -1,34 +1,78 @@
 @{
-Layout = "_Layout";
+    Layout = "_Layout";
 }
 
 @using SweetTreat.Models
-
-<h1>Welcome to Pierre's Sweet and Savory Treats</h1>
+<br>
+<div class="text-center">
+  <h1 style="font-weight: bold; margin-bottom: 1em;">Welcome, to Pierre's Sweet and Savory Treats</h1>
+</div>
 <hr>
+
+<div class="container">
 @if (User.Identity.IsAuthenticated)
 {
+    <div class="alert alert-primary" role="alert">
+        <h3>Welcome, @User.Identity.Name!</h3>
+    </div>
+    
+    <div class="card my-4">
+        <div class="card-header">
+            <h4>Treats</h4>
+        </div>
+        <div class="card-body">
+            @if (Model["treats"].Length == 0)
+            {
+                <p class="text-muted">No treats have been added to this user yet!</p>
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var treat in Model["treats"])
+                    {
+                        <li class="list-group-item">@Html.ActionLink((string)treat.TreatName, "Details", "Treats", new { id = treat.TreatId })</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
 
-  <h4>Treats and Flavors for @User.Identity.Name</h4>
-  @if (Model["flavorTreats"].Length == 0)
-  {
-    <p>No treats or flavors have been added yet!</p>
-  } 
-  <ul>
-    @foreach (var flavorTreat in Model["flavorTreats"])
-    {
-      <li>@Html.ActionLink((string)@flavorTreat.Treat.Name, "Details", "Treats", new { id = @flavorTreat.Treat.Id}) with @flavorTreat.Flavor.Name</li>
-    }
-  </ul>
+    <div class="card my-4">
+        <div class="card-header">
+            <h4>Flavors</h4>
+        </div>
+        <div class="card-body">
+            @if (Model["flavors"].Length == 0)
+            {
+                <p class="text-muted">No flavors have been added to this user yet!</p>
+            }
+            else
+            {
+                <ul class="list-group list-group-flush">
+                    @foreach (var flavor in Model["flavors"])
+                    {
+                        <li class="list-group-item">@Html.ActionLink((string)flavor.Name, "Details", "Flavors", new { id = flavor.Id })</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
 }
 else
 {
-  <h4>Treats and Flavors</h4>
-  <p>Please @Html.ActionLink("log in", "LogIn", "Accounts") to view or manage treats and flavors.</p>
+    <div class="alert alert-secondary" role="alert">
+        <h4>Treats and Flavors</h4>
+        <p>Please @Html.ActionLink("log in", "LogIn", "Accounts") to view or manage treats and flavors.</p>
+    </div>
 }
+
 <hr>
+
 @if (User.IsInRole("Admin"))
 {
-  <p>@Html.ActionLink("Manage treats", "Index", "Treats") | @Html.ActionLink("Manage flavors", "Index", "Flavors")</p> 
-  <p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
+    <div class="alert alert-warning" role="alert">
+        <p>@Html.ActionLink("Manage treats", "Index", "Treats") | @Html.ActionLink("Manage flavors", "Index", "Flavors")</p>
+        <p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
+    </div>
 }
+</div>
