@@ -35,7 +35,7 @@ namespace SweetTreat.Controllers
     {
       if(ModelState.IsValid)
       {
-        ApplicationUser user = new ApplicationUser { UserName = model.Email };
+        ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if(result.Succeeded)
         {
@@ -84,7 +84,7 @@ namespace SweetTreat.Controllers
     public async Task<ActionResult> LogOff()
     {
       await _signInManager.SignOutAsync();
-      return RedirectToAction("Index", "Home");
+      return RedirectToAction("Index");
     }
   }
 }

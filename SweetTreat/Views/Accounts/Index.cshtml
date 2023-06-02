@@ -1,20 +1,28 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 
-<h2>Authentication with Identity</h2>
+<h2 class="login-title">Profile</h2>
 <hr />
+
 @if (User.Identity.IsAuthenticated)
 {
-  <p>Hello @User.Identity.Name!</p>
-  @using (Html.BeginForm("LogOff", "Accounts"))
-  {
-    <input type="submit" class="btn btn-primary" value="Log out" />
-  }
+    <form class="form-group">
+        <div class="login-container">
+            <p class="login-message">Hello @User.Identity.Name!</p>
+            @using (Html.BeginForm("LogOff", "Accounts"))
+            {
+                <button type="submit" class="btn btn-primary">Log out</button>
+            }
+        </div>
+    </form>
 }
 else
 {
-  <p>@Html.ActionLink("Register", "Register")</p>
-  <p>@Html.ActionLink("Log in", "Login")</p>
+    <div class="authentication-links">
+        <p>@Html.ActionLink("Register", "Register")</p>
+        <p>@Html.ActionLink("Log in", "Login")</p>
+    </div>
 }
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+<p class="home-link">@Html.ActionLink("Home", "Index", "Home")</p>

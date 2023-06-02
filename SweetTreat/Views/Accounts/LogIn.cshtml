@@ -6,34 +6,45 @@
 
 @model LoginViewModel
 
-<h2>Log in with your account</h2>
-<hr />
+<div class="login-container">
+    <h2 class="login-title">Log into your account</h2>
+    <hr />
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>You are already logged in.</p>
-    <form asp-action="LogOff" asp-controller="Accounts" method="post">
-        <button type="submit" class="btn btn-primary">Log Off</button>
-    </form>
-}
-else
-{
-    @if (!ViewData.ModelState.IsValid)
+    @if (User.Identity.IsAuthenticated)
     {
-        @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:")
+        <p class="login-message">You are already logged in.</p>
+        @using (Html.BeginForm("LogOff", "Accounts"))
+        {
+            <button type="submit" class="btn btn-primary">Log out</button>
+        }
     }
-
-    using (Html.BeginForm())
+    else
     {
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
+      @if (!ViewData.ModelState.IsValid)
+      {
+          @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:", new { @class = "login-error" })
+      }
 
-        @Html.LabelFor(m => m.Password)
-        @Html.EditorFor(m => m.Password)
+      @using (Html.BeginForm())
+      {
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "login-label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "login-input" })
+        </div>
 
-        <input type="submit" value="Log in" />
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "login-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "login-input" })
+        </div>
+
+        <input type="submit" value="Log in" class="btn btn-primary" />
+
+        <p class="login-link">
+            @Html.ActionLink("Register for a user account", "Register")
+        </p>
+        <p class="login-link">
+            @Html.ActionLink("Back to accounts page", "Index")
+        </p>
+      }
     }
-
-    <p>@Html.ActionLink("Register for a user account", "Register")</p>
-    <p>@Html.ActionLink("Back to accounts page", "Index")</p>
-}
+</div>
