@@ -1,7 +1,7 @@
-using ProjectName.Models;
+using SweetTreat.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ProjectName.Controllers
+namespace SweetTreat.Controllers
 {
   public class ClassNmeController : Controller
   {
