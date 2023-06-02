@@ -29,10 +29,10 @@ namespace SweetTreat.Controllers
 
       if (currentUser != null)
       {
-        Sweet[] sweets = _db.Sweets
+        Flavor[] flavors = _db.Flavors
                           .Where(entry => entry.User.Id == currentUser.Id)
                           .ToArray();
-        model.Add("sweets", sweets);
+        model.Add("flavors", flavors);
         Treat[] treats = _db.Treats
                           .Where(entry => entry.User.Id == currentUser.Id)
                           .ToArray();
