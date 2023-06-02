@@ -6,7 +6,7 @@ using SweetTreat.ViewModels;
 
 namespace SweetTreat.Controllers
 {
-  public class AccountsController : Controllers
+  public class AccountsController : Controller
   {
     private readonly SweetTreatContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -50,6 +50,7 @@ namespace SweetTreat.Controllers
           return View(model);
         }
       }
+      return View(model);
     }
 
     public ActionResult Login()
@@ -62,7 +63,11 @@ namespace SweetTreat.Controllers
     {
       if(ModelState.IsValid)
       {
-        SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+        return View(model);
+      }
+      else
+      {
+        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
         if(result.Succeeded)
         {
           return RedirectToAction("Index");
@@ -73,7 +78,6 @@ namespace SweetTreat.Controllers
           return View(model);
         }
       }
-      return View(model);
     }
 
     [HttpPost]
@@ -81,5 +85,6 @@ namespace SweetTreat.Controllers
     {
       await _signInManager.SignOutAsync();
       return RedirectToAction("Index");
+    }
   }
 }
