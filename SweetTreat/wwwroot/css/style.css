@@ -1,6 +1,13 @@
 body {
   background-color: #fdf6f0;
   font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('/assets/Flour.jpeg');
+  background-size: cover;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -11,6 +18,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
   background-color: #FFE0B2;
   border-bottom: 1px solid #FFCC80;
+  background-image: url('/assets/Donut.jpeg');
+  background-size: cover;
 }
 
 .navbar .nav-link {
@@ -27,11 +36,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2em;
 }
 
-.footer {
-  background-color: #FFCC80;
-  color: #5D4037;
-  padding: 2em 0;
+#footer {
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
+  margin-top: 50px;
+  text-align: center;
+  background-color: #FFCC80;
+  color: #5D4037;
 }
