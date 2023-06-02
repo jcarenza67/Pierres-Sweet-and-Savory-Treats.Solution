@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetTreat.Models.Treat
+
+<h4>Edit this treat: @Html.DisplayFor(model => model.TreatName)</h4>
+
+<p>@Html.ValidationMessageFor(model => model.TreatName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+  <p>Type of Treat: @Html.EditorFor(model => model.TreatName)</p>
+  
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to treat list", "Index", "Treats")</p>

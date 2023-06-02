@@ -1,0 +1,27 @@
+@{
+    Layout = "_Layout";
+}
+
+@using SweetTreat.Models
+@model IEnumerable<Flavor>
+
+<div class="container">
+  <h1 class="my-4">Flavors</h1>
+
+  @if (Model.Count() == 0)
+  {
+    <h3>No Flavors have been added yet!</h3>
+  }
+
+  <ul class="list-group mb-4">
+    @foreach (Flavor flavor in Model)
+    {
+      <li class="list-group-item">
+        @Html.ActionLink($"{flavor.FlavorName}", "Details", new { id = flavor.FlavorId }, new { @class = "flavor-link" })
+      </li>
+    }
+  </ul>
+
+  <p>@Html.ActionLink("Add a new tasty flavor!", "Create", "Flavors", null, new { @class = "btn btn-primary mb-2" })</p>
+  <p>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-secondary" })</p>
+</div>

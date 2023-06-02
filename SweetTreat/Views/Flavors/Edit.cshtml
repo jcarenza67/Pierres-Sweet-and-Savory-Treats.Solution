@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetTreat.Models.Flavor
+
+<h4>Edit this flavor: @Html.DisplayFor(model => model.FlavorName)</h4>
+
+<p>@Html.ValidationMessageFor(model => model.FlavorName, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
+  <p>Type of Flavor: @Html.EditorFor(model => model.FlavorName)</p>
+  
+  <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to flavor list", "Index", "Flavors")</p>

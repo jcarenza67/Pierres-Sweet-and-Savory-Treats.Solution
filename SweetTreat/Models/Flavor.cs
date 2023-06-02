@@ -8,7 +8,8 @@ namespace SweetTreat.Models
     public int FlavorId { get; set; }
     [Required(ErrorMessage = "Please enter a flavor name.")]
     public string FlavorName { get; set; }
-    public List<FlavorTreat> JoinFlavorTreat { get; }
+    public string FlavorDescription { get; set; }
+    public List<FlavorTreat> JoinEntities { get; }
     public ApplicationUser User { get; set; }
   }
 }

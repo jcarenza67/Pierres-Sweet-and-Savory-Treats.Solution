@@ -56,7 +56,7 @@ namespace SweetTreat.Controllers
     public ActionResult Details(int id)
     {
       Flavor thisFlavor = _db.Flavors
-                              .Include(flavor => flavor.JoinFlavorTreat)
+                              .Include(flavor => flavor.JoinEntities)
                               .ThenInclude(join => join.Treat)
                               .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);

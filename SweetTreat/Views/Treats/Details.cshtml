@@ -1,0 +1,39 @@
+@{
+  Layout = "_Layout";
+}
+
+@using SweetTreat.Models
+@model SweetTreat.Models.Treat
+
+<div class="card">
+  <div class="card-header">
+    <h2>Treat Details</h2>
+  </div>
+  <div class="card-body">
+    <h3 class="card-title">Treat Name: @Html.DisplayFor(model => model.TreatName)</h3>
+
+    @if(@Model.JoinEntities.Count == 0)
+    {
+      <p>This treat does not have any flavors yet!</p>
+    }
+    else
+    {
+      <h4>This treat has the following flavors:</h4>
+      <ul>
+        @foreach(FlavorTreat join in Model.JoinEntities)
+        {
+          <li>@Html.ActionLink($"{join.Flavor.FlavorName}", "Details", "Flavors", new { id = join.Flavor.FlavorId})</li>
+        }
+      </ul>
+    }
+
+  </div>
+</div>
+<br>
+<div class="container">
+  <p>@Html.ActionLink("Back to Treats", "Index", "Treats", null, new { @class = "btn btn-primary mb-2" })</p>
+  <p>@Html.ActionLink("Add a flavor for this treat", "AddFlavor", new { id = Model.TreatId }, new { @class = "btn btn-primary mb-2" })</p>
+  <p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId }, new { @class = "btn btn-warning mb-2" })</p>
+  <p>@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId }, new { @class = "btn btn-danger mb-2" })</p>
+  <p>@Html.ActionLink("Add new flavor", "Create", "Flavors", null, new { @class = "btn btn-success" })</p>
+</div>
