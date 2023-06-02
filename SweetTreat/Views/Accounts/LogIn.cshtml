@@ -1,5 +1,5 @@
 @{
-  Layout = "_Layout";
+    Layout = "_Layout";
 }
 
 @using SweetTreat.ViewModels
@@ -9,21 +9,31 @@
 <h2>Log in with your account</h2>
 <hr />
 
-@if(!ViewData.ModelState.IsValid) 
+@if (User.Identity.IsAuthenticated)
 {
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+    <p>You are already logged in.</p>
+    <form asp-action="LogOff" asp-controller="Accounts" method="post">
+        <button type="submit" class="btn btn-primary">Log Off</button>
+    </form>
 }
-
-@using (Html.BeginForm())
+else
 {
-  @Html.LabelFor(m => m.Email)
-  @Html.TextBoxFor(m => m.Email)
+    @if (!ViewData.ModelState.IsValid)
+    {
+        @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:")
+    }
 
-  @Html.LabelFor(m => m.Password)
-  @Html.EditorFor(m => m.Password)
+    using (Html.BeginForm())
+    {
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
 
-  <input type="submit" value="Log in" />
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password)
+
+        <input type="submit" value="Log in" />
+    }
+
+    <p>@Html.ActionLink("Register for a user account", "Register")</p>
+    <p>@Html.ActionLink("Back to accounts page", "Index")</p>
 }
-
-<p>@Html.ActionLink("Register for a user account", "Register")</p>
-<p>@Html.ActionLink("Back to accounts page", "Index")</p>
