@@ -1,22 +1,37 @@
 body {
+  padding-top: 80px;
   background-color: #fdf6f0;
   font-family: 'Courier New', Courier, monospace;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url('/assets/Flour.jpeg');
-  background-size: cover;
   font-size: xx-large;
   font-weight: bold;
+  position: relative;
 }
 
+body::after {
+  content: "";
+  background-image: url('/assets/Flour.jpeg');
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;  
+}
+
+
+
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-  color: #5D4037;
+
+  color: #080808;
 }
 
 .navbar {
-  position: relative;
+  
   background-color: #FFE0B2;
   border-bottom: 1px solid #FFCC80;
   background-image: url('/assets/Donut.jpeg');
@@ -88,4 +103,25 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 3px;
   border-width: 2px;
   border-color: #000000;
+}
+
+.custom-nav-item {
+  padding: 15px 0;
+  font-weight: bold;
+}
+
+.custom-nav-item .nav-link {
+  color: #5D4037;
+}
+
+.custom-nav-item .nav-link:hover {
+  color: #B7245C;
+}
+
+.charity-link {
+  color: #FFCC80;
+}
+
+.charity-link:hover {
+  color: #FFB74D;
 }

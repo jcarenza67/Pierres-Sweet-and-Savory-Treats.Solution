@@ -13,7 +13,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="alert alert-primary" role="alert">
-        <h3>Welcome, @User.Identity.Name!</h3>
+        <h3>Hello, @User.Identity.Name!</h3>
     </div>
     
     <div class="card my-4">
@@ -51,7 +51,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach (var flavor in Model["flavors"])
                     {
-                        <li class="list-group-item">@Html.ActionLink((string)flavor.Name, "Details", "Flavors", new { id = flavor.Id })</li>
+                        <li class="list-group-item">@Html.ActionLink((string)flavor.FlavorName, "Details", "Flavors", new { id = flavor.FlavorId })</li>
                     }
                 </ul>
             }
