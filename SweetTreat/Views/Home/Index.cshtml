@@ -1,0 +1,34 @@
+@{
+Layout = "_Layout";
+}
+
+@using SweetTreat.Models
+
+<h1>Welcome to Pierre's Sweet and Savory Treats</h1>
+<hr>
+@if (User.Identity.IsAuthenticated)
+{
+
+  <h4>Treats and Flavors for @User.Identity.Name</h4>
+  @if (Model["flavorTreats"].Length == 0)
+  {
+    <p>No treats or flavors have been added yet!</p>
+  } 
+  <ul>
+    @foreach (var flavorTreat in Model["flavorTreats"])
+    {
+      <li>@Html.ActionLink((string)@flavorTreat.Treat.Name, "Details", "Treats", new { id = @flavorTreat.Treat.Id}) with @flavorTreat.Flavor.Name</li>
+    }
+  </ul>
+}
+else
+{
+  <h4>Treats and Flavors</h4>
+  <p>Please @Html.ActionLink("log in", "LogIn", "Accounts") to view or manage treats and flavors.</p>
+}
+<hr>
+@if (User.IsInRole("Admin"))
+{
+  <p>@Html.ActionLink("Manage treats", "Index", "Treats") | @Html.ActionLink("Manage flavors", "Index", "Flavors")</p> 
+  <p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
+}
