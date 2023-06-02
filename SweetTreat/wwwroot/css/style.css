@@ -16,10 +16,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
+  position: relative;
   background-color: #FFE0B2;
   border-bottom: 1px solid #FFCC80;
   background-image: url('/assets/Donut.jpeg');
   background-size: cover;
+  background-position: center;
+}
+
+.navbar-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .navbar .nav-link {
@@ -37,6 +48,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #footer {
+  display: flex;
+  align-items: bottom;
+  justify-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -45,4 +59,33 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   background-color: #FFCC80;
   color: #5D4037;
+  height: 30px;
+}
+
+
+#navfont {
+  font-size: 40px;
+  font-weight: bold;
+  color: #B7245C;
+  z-index: 1000000;
+  padding: 3px 15px;
+  border-radius: 3px;
+}
+
+#navfont:hover {
+  color: #5D4037;
+}
+
+#navfont:active {
+  color: #5D4037;
+}
+
+#menu-button {
+  font-weight: bold;
+  color: #000000;
+  z-index: 1000000;
+  padding: 3px 15px;
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: #000000;
 }

@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model SweetTreat.Models.Flavor
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Are you sure you want to delete this flavor?</h2>
+
+      <div class="form-group">
+        <label for="FlavorName">Flavor:</label>
+        <p class="card-text"> @Html.DisplayFor(model => model.FlavorName)</p>
+      </div>
+
+      @using (Html.BeginForm())
+      {
+        <br>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+      }
+      
+      <p class="mt-3">
+        @Html.ActionLink("Back to Flavor list", "Index", "Flavors", null, new { @class = "btn btn-primary" })
+      </p>
+    </div>
+  </div>
+</div>

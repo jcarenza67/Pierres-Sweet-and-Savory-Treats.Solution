@@ -2,17 +2,17 @@
     Layout = "_Layout";
 }
 
-@model SweetTreat.Models.Treat
+@model SweetTreat.Models.Flavor
 
 <div class="container">
-    <h2>Add a Flavor</h2>
+    <h2>Add a Treat</h2>
 
     <form method="post" class="form">
-        @Html.HiddenFor(model => model.TreatId)
+        @Html.HiddenFor(model => model.FlavorId)
 
         <div class="form-group">
-            <label for="FlavorId">Flavor</label>
-            @Html.DropDownList("FlavorId", null, "-- Select Flavor --", new { @class = "form-control" })
+            <label for="TreatId">Treat</label>
+            @Html.DropDownList("TreatId", null, "-- Select Treat --", new { @class = "form-control" })
         </div>
         <br>
         <button type="submit" class="btn btn-primary">Add</button>
