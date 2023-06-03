@@ -7,7 +7,7 @@
 @model LoginViewModel
 
 <div class="login-container">
-    <h2 class="login-title">Log into your account</h2>
+    
     <hr />
 
     @if (User.Identity.IsAuthenticated)
@@ -20,6 +20,7 @@
     }
     else
     {
+      <h2 class="login-title">Log into your account</h2>
       @if (!ViewData.ModelState.IsValid)
       {
           @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:", new { @class = "login-error" })
